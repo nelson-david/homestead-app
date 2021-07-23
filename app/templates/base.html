@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="theme-color" content="#000008" />
+	<meta
+		name="description"
+		content="Social Blog"
+	/>
+	<meta name="apple-mobile-web-app-title" content="Social Blog">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Acme&family=Bree+Serif&family=Encode+Sans+SC:wght@100;200;300;400;500;600;700;800;900&family=Fredoka+One&family=Jomhuria&family=Jost:wght@100;200;300;400;500;600;700;800;900&family=Lobster&family=Otomanopee+One&family=Prata&family=Signika+Negative:wght@300;400;600;700&family=Signika:wght@300;400;500;600;700&family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.18.0/css/mdb.min.css" rel="stylesheet">
+	<link href="/static/css/mdb.min.css" rel="stylesheet">
+	<link href="/static/css/styles.css" rel="stylesheet">
+	<title>Social Blog - {% block title %}Home{% endblock %}</title>
+</head>
+<body>
+	{% include 'styles.html' %}
+	{% include 'media.html' %}
+
+	{% block modals %}
+	<div id="modal" class="fixed-top profile_moremodal">
+		<div class="fixed-top overlay"></div>
+		<div class="custom_modal comment_modal">
+			<div class="content">
+				<ul>
+					<li>
+						<a href="" id="edit_posturl">
+							<i>
+								<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M16.589 9L15.003 7.414 5.906 16.511 5.377 18.625 7.491 18.097z"></path><path transform="rotate(134.999 18.003 6)" fill="none" d="M16.882 4.879H19.125V7.122H16.882z"></path><path d="M4.003,21c0.081,0,0.162-0.01,0.242-0.03l4-1c0.176-0.044,0.337-0.135,0.465-0.263L21.003,7.414 c0.378-0.378,0.586-0.88,0.586-1.414s-0.208-1.036-0.586-1.414L19.417,3c-0.756-0.756-2.072-0.756-2.828,0L4.296,15.293 c-0.128,0.128-0.219,0.289-0.263,0.464l-1,4c-0.086,0.341,0.015,0.701,0.263,0.95C3.485,20.897,3.741,21,4.003,21z M18.003,4.414 L19.589,6l-1.586,1.586L16.417,6L18.003,4.414z M5.906,16.511l9.097-9.097L16.589,9l-9.098,9.097l-2.114,0.528L5.906,16.511z"></path></svg>
+							</i>
+							Edit
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i>
+								<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 3h3v1h-1v9l-1 1H4l-1-1V4H2V3h3V2a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v1zM9 2H6v1h3V2zM4 13h7V4H4v9zm2-8H5v7h1V5zm1 0h1v7H7V5zm2 0h1v7H9V5z"></path></svg>
+							</i>
+							Delete
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i>
+								<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 1h13l.5.5v10l-.5.5H7.707l-2.853 2.854L4 14.5V12H1.5l-.5-.5v-10l.5-.5zm6 10H14V2H2v9h2.5l.5.5v1.793l2.146-2.147L7.5 11zm0-8h1v5h-1V3zm0 7h1V9h-1v1z"></path></svg>
+							</i>
+							Report
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">
+							<i>
+								<svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M18 9C19.6569 9 21 7.65685 21 6C21 4.34315 19.6569 3 18 3C16.3431 3 15 4.34315 15 6C15 6.12549 15.0077 6.24919 15.0227 6.37063L8.08261 9.84066C7.54305 9.32015 6.80891 9 6 9C4.34315 9 3 10.3431 3 12C3 13.6569 4.34315 15 6 15C6.80891 15 7.54305 14.6798 8.08261 14.1593L15.0227 17.6294C15.0077 17.7508 15 17.8745 15 18C15 19.6569 16.3431 21 18 21C19.6569 21 21 19.6569 21 18C21 16.3431 19.6569 15 18 15C17.1911 15 16.457 15.3202 15.9174 15.8407L8.97733 12.3706C8.99229 12.2492 9 12.1255 9 12C9 11.8745 8.99229 11.7508 8.97733 11.6294L15.9174 8.15934C16.457 8.67985 17.1911 9 18 9Z" fill="currentColor"></path></svg>
+							</i>
+							Share
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">
+							<i>
+								<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372 0-89 31.3-170.8 83.5-234.8l523.3 523.3C682.8 852.7 601 884 512 884zm288.5-137.2L277.2 223.5C341.2 171.3 423 140 512 140c205.4 0 372 166.6 372 372 0 89-31.3 170.8-83.5 234.8z"></path></svg>
+							</i>
+							Stop Seeing This
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	{% endblock %}
+
+	{% block header %}
+	<header class="custom__header">
+		<nav class="navbar navbar-expand custom__navbar">
+			<a class="navbar-brand navbar__brand" href="/">
+				Home Stead<i> .</i>
+			</a>
+			<nav class="nav_content second">
+				<ul class="navbar-nav">
+					{% block nav_ulcontent %}
+					<li class="nav-item" id="sidebar_li">
+						<a>
+							<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2 1h12a1 1 0 011 1v12a1 1 0 01-1 1H2a1 1 0 01-1-1V2a1 1 0 011-1zm12-1a2 2 0 012 2v12a2 2 0 01-2 2H2a2 2 0 01-2-2V2a2 2 0 012-2h12z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M5 15V1H4v14h1zm8-11.5a.5.5 0 00-.5-.5h-5a.5.5 0 000 1h5a.5.5 0 00.5-.5zm0 3a.5.5 0 00-.5-.5h-5a.5.5 0 000 1h5a.5.5 0 00.5-.5zm0 3a.5.5 0 00-.5-.5h-5a.5.5 0 000 1h5a.5.5 0 00.5-.5zm0 3a.5.5 0 00-.5-.5h-5a.5.5 0 000 1h5a.5.5 0 00.5-.5z" clip-rule="evenodd"></path></svg>
+							Menu
+						</a>
+					</li>
+					{% endblock %}
+				</ul>
+			</nav>
+		</nav>
+
+		{% block breadcrumb %}
+		<nav aria-label="breadcrumb" class="fixed-bottom bottom_navbar">
+			<ol class="breadcrumb" id="bottom_navbar">
+				<li class="breadcrumb-item">
+					<a href="">
+						<svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12.552 8C11.9997 8 11.552 8.44772 11.552 9C11.552 9.55228 11.9997 10 12.552 10H16.552C17.1043 10 17.552 9.55228 17.552 9C17.552 8.44772 17.1043 8 16.552 8H12.552Z" fill="currentColor" fill-opacity="0.5"></path><path d="M12.552 17C11.9997 17 11.552 17.4477 11.552 18C11.552 18.5523 11.9997 19 12.552 19H16.552C17.1043 19 17.552 18.5523 17.552 18C17.552 17.4477 17.1043 17 16.552 17H12.552Z" fill="currentColor" fill-opacity="0.5"></path><path d="M12.552 5C11.9997 5 11.552 5.44772 11.552 6C11.552 6.55228 11.9997 7 12.552 7H20.552C21.1043 7 21.552 6.55228 21.552 6C21.552 5.44772 21.1043 5 20.552 5H12.552Z" fill="currentColor" fill-opacity="0.8"></path><path d="M12.552 14C11.9997 14 11.552 14.4477 11.552 15C11.552 15.5523 11.9997 16 12.552 16H20.552C21.1043 16 21.552 15.5523 21.552 15C21.552 14.4477 21.1043 14 20.552 14H12.552Z" fill="currentColor" fill-opacity="0.8"></path><path d="M3.448 4.00208C2.89571 4.00208 2.448 4.44979 2.448 5.00208V10.0021C2.448 10.5544 2.89571 11.0021 3.448 11.0021H8.448C9.00028 11.0021 9.448 10.5544 9.448 10.0021V5.00208C9.448 4.44979 9.00028 4.00208 8.448 4.00208H3.448Z" fill="currentColor"></path><path d="M3.448 12.9979C2.89571 12.9979 2.448 13.4456 2.448 13.9979V18.9979C2.448 19.5502 2.89571 19.9979 3.448 19.9979H8.448C9.00028 19.9979 9.448 19.5502 9.448 18.9979V13.9979C9.448 13.4456 9.00028 12.9979 8.448 12.9979H3.448Z" fill="currentColor"></path></svg>
+					</a>
+				</li>
+				<li class="breadcrumb-item">
+					<a href="">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M464 512a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm200 0a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm-400 0a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm661.2-173.6c-22.6-53.7-55-101.9-96.3-143.3a444.35 444.35 0 0 0-143.3-96.3C630.6 75.7 572.2 64 512 64h-2c-60.6.3-119.3 12.3-174.5 35.9a445.35 445.35 0 0 0-142 96.5c-40.9 41.3-73 89.3-95.2 142.8-23 55.4-34.6 114.3-34.3 174.9A449.4 449.4 0 0 0 112 714v152a46 46 0 0 0 46 46h152.1A449.4 449.4 0 0 0 510 960h2.1c59.9 0 118-11.6 172.7-34.3a444.48 444.48 0 0 0 142.8-95.2c41.3-40.9 73.8-88.7 96.5-142 23.6-55.2 35.6-113.9 35.9-174.5.3-60.9-11.5-120-34.8-175.6zm-151.1 438C704 845.8 611 884 512 884h-1.7c-60.3-.3-120.2-15.3-173.1-43.5l-8.4-4.5H188V695.2l-4.5-8.4C155.3 633.9 140.3 574 140 513.7c-.4-99.7 37.7-193.3 107.6-263.8 69.8-70.5 163.1-109.5 262.8-109.9h1.7c50 0 98.5 9.7 144.2 28.9 44.6 18.7 84.6 45.6 119 80 34.3 34.3 61.3 74.4 80 119 19.4 46.2 29.1 95.2 28.9 145.8-.6 99.6-39.7 192.9-110.1 262.7z"></path>
+                        </svg>
+					</a>
+				</li>
+				<li class="breadcrumb-item">
+					<a href="">
+						<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M13.377 10.573a7.63 7.63 0 0 1-.383-2.38V6.195a5.115 5.115 0 0 0-1.268-3.446 5.138 5.138 0 0 0-3.242-1.722c-.694-.072-1.4 0-2.07.227-.67.215-1.28.574-1.794 1.053a4.923 4.923 0 0 0-1.208 1.675 5.067 5.067 0 0 0-.431 2.022v2.2a7.61 7.61 0 0 1-.383 2.37L2 12.343l.479.658h3.505c0 .526.215 1.04.586 1.412.37.37.885.586 1.412.586.526 0 1.04-.215 1.411-.586s.587-.886.587-1.412h3.505l.478-.658-.586-1.77zm-4.69 3.147a.997.997 0 0 1-.705.299.997.997 0 0 1-.706-.3.997.997 0 0 1-.3-.705h1.999a.939.939 0 0 1-.287.706zm-5.515-1.71l.371-1.114a8.633 8.633 0 0 0 .443-2.691V6.004c0-.563.12-1.113.347-1.616.227-.514.55-.969.969-1.34.419-.382.91-.67 1.436-.837.538-.18 1.1-.24 1.65-.18a4.147 4.147 0 0 1 2.597 1.4 4.133 4.133 0 0 1 1.004 2.776v2.01c0 .909.144 1.818.443 2.691l.371 1.113h-9.63v-.012z"></path></svg>
+					</a>
+				</li>
+				<li class="breadcrumb-item">
+					<a href="">
+						<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M203.97 23l-18.032 4.844 11.656 43.468c-25.837 8.076-50.32 21.653-71.594 40.75L94.53 80.594l-13.218 13.22 31.376 31.374c-19.467 21.125-33.414 45.53-41.813 71.343l-42.313-11.343-4.843 18.063 42.25 11.313c-6.057 27.3-6.157 55.656-.345 83L23.72 308.78l4.843 18.064 41.812-11.22c6.693 21.225 17.114 41.525 31.25 59.876l-29.97 52.688-16.81 29.593 29.56-16.842 52.657-29.97c18.41 14.216 38.784 24.69 60.094 31.407l-11.22 41.844 18.033 4.81 11.218-41.905c27.345 5.808 55.698 5.686 83-.375l11.312 42.28 18.063-4.81-11.344-42.376c25.812-8.4 50.217-22.315 71.342-41.78l31.375 31.373 13.22-13.218-31.47-31.47c19.09-21.266 32.643-45.738 40.72-71.563l43.53 11.657 4.813-18.063-43.625-11.686c5.68-27.044 5.576-55.06-.344-82.063l43.97-11.78-4.813-18.063L440.908 197c-6.73-20.866-17.08-40.79-31.032-58.844l29.97-52.656 16.842-29.563-29.593 16.844-52.656 29.97c-17.998-13.875-37.874-24.198-58.657-30.906l11.783-44L309.5 23l-11.78 43.97c-27-5.925-55.02-6.05-82.064-.376L203.97 23zm201.56 85L297.25 298.313l-.75.437-40.844-40.875-148.72 148.72-2.186 1.25 109.125-191.75 41.78 41.78L405.532 108zm-149.686 10.594c21.858 0 43.717 5.166 63.594 15.47l-116.625 66.342-2.22 1.28-1.28 2.22-66.25 116.406c-26.942-52.04-18.616-117.603 25.03-161.25 26.99-26.988 62.38-40.468 97.75-40.468zm122.72 74.594c26.994 52.054 18.67 117.672-25.002 161.343-43.66 43.662-109.263 52.005-161.312 25.033l116.438-66.282 2.25-1.25 1.25-2.25 66.375-116.592z"></path></svg>
+					</a>
+				</li>	
+				<li class="breadcrumb-item">
+					<a href="">
+						<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M12,8c-1.178,0-2,0.822-2,2s0.822,2,2,2s2-0.822,2-2S13.178,8,12,8z"></path><path fill="none" d="M12,4c-4.337,0-8,3.663-8,8c0,2.176,0.923,4.182,2.39,5.641c0.757-1.8,2.538-3.068,4.61-3.068h2 c2.072,0,3.854,1.269,4.61,3.068C19.077,16.182,20,14.176,20,12C20,7.663,16.337,4,12,4z M12,14c-2.28,0-4-1.72-4-4s1.72-4,4-4 s4,1.72,4,4S14.28,14,12,14z"></path><path fill="none" d="M13,16.572h-2c-1.432,0-2.629,1.01-2.926,2.354C9.242,19.604,10.584,20,12,20s2.758-0.396,3.926-1.073 C15.629,17.582,14.432,16.572,13,16.572z"></path><path d="M12,2C6.579,2,2,6.579,2,12c0,3.189,1.592,6.078,4,7.924V20h0.102C7.77,21.245,9.813,22,12,22s4.23-0.755,5.898-2H18 v-0.076c2.408-1.846,4-4.734,4-7.924C22,6.579,17.421,2,12,2z M8.074,18.927c0.297-1.345,1.494-2.354,2.926-2.354h2 c1.432,0,2.629,1.01,2.926,2.354C14.758,19.604,13.416,20,12,20S9.242,19.604,8.074,18.927z M17.61,17.641 c-0.757-1.8-2.538-3.068-4.61-3.068h-2c-2.072,0-3.854,1.269-4.61,3.068C4.923,16.182,4,14.176,4,12c0-4.337,3.663-8,8-8 s8,3.663,8,8C20,14.176,19.077,16.182,17.61,17.641z"></path><path d="M12,6c-2.28,0-4,1.72-4,4s1.72,4,4,4s4-1.72,4-4S14.28,6,12,6z M12,12c-1.178,0-2-0.822-2-2s0.822-2,2-2s2,0.822,2,2 S13.178,12,12,12z"></path></svg>
+					</a>
+				</li>
+			</ol>
+		</nav>
+		{% endblock %}
+	</header>
+	{% endblock %}
+
+	{% block container %}
+	<div class="container-fluid custom__container">
+		<div class="row">
+			<div class="col-xl-3 col-lg-3 col-md-5 col-sm-2" id="sidebar__col">
+				{% include 'sidebar.html' %}
+			</div>
+			<div class="col-xl-5 col-lg-5 col-md-7 col-sm-10 col-12" id="content_col">
+				{% block content %}
+				{% endblock %}
+			</div>
+			<div class="col-xl-4 col-lg-4" id="rightbar_col">
+				{% block rightbar %}
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+	{% endblock %}
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+	<script type="text/javascript" src="/static/js/popper.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.18.0/js/mdb.min.js"></script>
+	<script type="text/javascript" src="/static/js/mdb.min.js"></script>
+
+<script>
+$("#signup_form").on("submit", (e) => {
+	e.preventDefault();
+	const data = {
+		email: $("#signup_email").val(),
+		username: $("#signup_username").val(),
+		password: $("#signup_password").val(),
+		dob: $("#signup_dob").val()
+	}
+
+	req = $.ajax({
+		url: '/signup/',
+		method: "POST",
+		data: data,
+		success: (res) => {
+			console.log(res);
+			if (res.message == "exists"){
+				$("input").val('');
+			}
+			if (res.message == "success"){
+				window.location.assign("/signin");
+			}
+			if (res.message == "exists"){
+				$("input").val('');
+			}
+		}
+	})
+
+});
+
+$("#signin_form").on("submit", (e) => {
+	e.preventDefault();
+	$(".auth__btn i").show();
+	const data = {
+		username: $("#signin_username").val(),
+		password: $("#signin_password").val()
+	}
+	req = $.ajax({
+		url: '/signin/',
+		method: "POST",
+		data: data,
+		success: (res) => {
+			console.log(res);
+			if (res.message == "success"){
+				window.location.assign("/");
+			}
+			$(".auth__btn i").hide();
+		}
+	});
+});
+
+// Add Post Script Section
+const fileObj = [];
+const fileArray = [];
+
+function clickMe(){
+	console.log("Clicked Me...");
+}
+
+$("#image_input").on("change", (e) => {
+	fileArray.push(e.target.files)
+	$("#file__previewdiv").attr("class","add_padding")
+	for (let i = 0; i < fileArray[0].length; i++) {
+		fileObj.push(URL.createObjectURL(fileArray[0][i]));
+		$("#file__previewdiv").append(`
+			<img
+				src=${URL.createObjectURL(fileArray[0][i])}
+				class="img-fluid preview__img"
+				alt="prevImg${i}"
+				id="prevImg${i}"
+			/>
+			<i id="preview__imgicon${i}" class="preview__imgicon" data-id="prevImg${i}">
+				<svg data-id="prevImg${i}" stroke="currentColor" fill="currentColor" stroke-width="0" version="1.2" baseProfile="tiny" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M17.414 6.586c-.78-.781-2.048-.781-2.828 0l-2.586 2.586-2.586-2.586c-.78-.781-2.048-.781-2.828 0-.781.781-.781 2.047 0 2.828l2.585 2.586-2.585 2.586c-.781.781-.781 2.047 0 2.828.39.391.902.586 1.414.586s1.024-.195 1.414-.586l2.586-2.586 2.586 2.586c.39.391.902.586 1.414.586s1.024-.195 1.414-.586c.781-.781.781-2.047 0-2.828l-2.585-2.586 2.585-2.586c.781-.781.781-2.047 0-2.828z"></path></svg>
+			</i>
+		`)
+	}
+	$(".preview__imgicon").on("click", function(e){
+		const variable = e.target.dataset.id;
+		$(`#${variable}`).remove();
+		$(`#preview__imgicon${variable.slice(-1)}`).remove();
+	});
+});
+
+
+$("#add_postform").on("submit", (e) => {
+	e.preventDefault();
+	console.log("Object", $("#image_input").prop('files'));
+
+	var form_data = new FormData();
+	form_data.append('text', $("#add_postform_group span")[0].innerText);
+	form_data.append('shared', false);
+
+	var totalfiles = document.getElementById('image_input').files.length;
+	const filesToPush = [];
+	for (var index = 0; index < totalfiles; index++){
+		form_data.append('files', document.getElementById('image_input').files[index]);
+	}
+
+	req = $.ajax({
+		url: `/post/add/`,
+		type: 'POST',
+		data: form_data,
+		dataType: 'json',
+		contentType : false,
+		processData : false,
+		success: function(res){
+			console.log(res);
+		}
+	});
+
+
+});
+
+// Post Script Section
+const img_elements = $(".carousel-inner");
+const carousel_elements = $(".carousel-indicators");
+
+img_elements.map((index, value) => {
+	value.children[0].className = "carousel-item active";
+});
+
+carousel_elements.map((index, value) => {
+	value.children[0].className = "active"
+});
+
+// Comment Script Section
+$(".comment_dropdown").on("click", function(e){
+	console.log($(this).attr("author_id"), $(this).attr("user_id"));
+});
+
+$("#comment_form").on("submit", function(e){
+	e.preventDefault();
+	const body = $("#comment_input")[0].innerText;
+	const post_id = $("#comment_input").attr("post_id");
+	console.log(body, post_id);
+
+	req = $.ajax({
+		url: `/comment/add/`,
+		type: 'POST',
+		data: {post_id, body},
+		success: function(res){
+			console.log(res);
+		}
+	});
+
+});
+
+// Like Script Section
+$(".like_unlike_button").on("click", function(e){
+	const state = $(this).attr("state");
+	const __this = $(this);
+
+	if (state == "like"){
+		$(this).attr("state", "unlike");
+
+		req = $.ajax({
+			url: `/post/like/`,
+			type: 'POST',
+			data: {post_id:__this.attr("post_id")},
+			success: function(res){
+				if (res.message == "liked"){
+					__this[0].innerHTML=`
+						<svg stroke="green" fill="green" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" clip-rule="evenodd"></path></svg>
+					`;
+				}
+			}
+		});
+	}else{
+		$(this).attr("state", "like");
+
+		req = $.ajax({
+			url: `/post/unlike/`,
+			type: 'POST',
+			data: {post_id:__this.attr("post_id")},
+			success: function(res){
+				if (res.message == "unliked"){
+					__this[0].innerHTML=`
+						<svg stroke="green" fill="green" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 01.176-.17C12.72-3.042 23.333 4.867 8 15z" clip-rule="evenodd"></path></svg>
+					`;
+				}
+			}
+		});
+	}
+});
+
+// Modal Section Script
+$(".post_moreicon").on("click", function(){
+	const id = $(this)[0].dataset.id;
+	$("#edit_posturl").attr("href", `/post/edit/${id}/`)
+	$(".profile_moremodal").toggle(150);
+});
+$(".profile_moremodal .overlay").on("click", function(){
+	$(".profile_moremodal").hide(150);
+});
+
+</script>
+
+</body>
+</html>

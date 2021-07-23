@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block title %} {{active_user.username}} {% endblock %}
+
+{% block content %}
+<div class="card profile_card">
+	<a href="/cdn/media/img/main3.jpg" class="cover_photolink">
+		<img
+			src="/static/img/main3.jpg"
+			alt="cover_photo"
+			class="cover_photo"
+		/>
+	</a>
+	<div class="profile_photodiv">
+		<a href="/cdn/media/img/main1.jpg" class="profile_photolink">
+			<img
+				src="/static/img/main4.jpg"
+				alt="profile_photo"
+				class="profile_photo"
+			/>
+		</a>
+		<span class="username">
+			@{{active_user.username}}
+		</span>
+		
+		{% if current_user.is_following(new_post) %}
+			<a
+				href="javascript:void(0)"
+				class="follow_button"
+				data-state="following"
+				data-id="{{active_user.user_id}}"
+			>
+				Unfollow
+			</a>
+		{% else %}
+			<a
+				href="javascript:void(0)"
+				class="follow_button"
+				data-state="unfollowing"
+				data-id="{{active_user.user_id}}"
+			>
+				Follow
+			</a>
+		{% endif %}
+	</div>
+	<div class="mt-3 profile_detailsdiv first">
+		<a href="/user/{{active_user.user_id}}/followers">Followers: 156K</a>
+		<a href="/user/{{active_user.user_id}}/following">Following: 120</a>
+		<a href="javascript:void(0)">2167 Posts</a>
+	</div>
+	<div class="profile_detailsdiv second">
+		<span>Joined: 26th July 2021</span>
+		<span>Link: <a href=""> nelsonblog.com</a></span>
+		<span>Premium Users</span>
+	</div>
+
+	<div class="profile_contentdiv">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb" id="profile_breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="">Home</a>
+				</li>
+				<li class="breadcrumb-item">
+					<a href="">Posts</a>
+				</li>
+				<li class="breadcrumb-item">
+					<a href="">Tagged</a>
+				</li>
+			</ol>
+		</nav>
+		<br />
+		<div class="body">
+			{% include 'home_posts.html' %}
+		</div>
+
+	</div>
+</div>
+<style>
+#content_col{
+	padding: 0px;
+}
+</style>
+{% endblock %}
+
+{% block rightbar %}
+<div class="card profile_morecard">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb" id="profile_morebreadcrumb">
+			<li class="breadcrumb-item">
+				<a href="">Images</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="">Videos</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="">Tracks</a>
+			</li>
+		</ol>
+	</nav>
+	<div class="body">
+		<div class="row image_div">
+			{% for post in posts %}
+				{% if post.img != "None" %}
+					<div class="col-lg-4 album__col">
+						<a href="/post/{{post.post_id}}/" class="album__link">
+							<img
+								class="album__img"
+								src="/static/img/posts/{{ process_image(post.img)[0] }}"
+								alt="albumImg"
+							/>
+						</a>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}
